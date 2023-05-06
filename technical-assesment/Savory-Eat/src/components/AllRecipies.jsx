@@ -1,9 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "../index.scss";
+import axios from "axios"
+//import data from "../data/data.json"
+  
+
+
 const AllRecepies = () => {
+ const [data, setData]= useState([])
+//  useEffect(()=>{
+//  setData(data)
+// }, [])
+  useEffect (()=>
+  {
+    axios.get("http://localhost:4000/")
+    .then (response=> setData (response.data))
+    .catch(err=> { console.log(err)})
+  },[])
+
   return (
-    <div className="card-container">
     
+    <div className="card-container" >
+    {data.map(item=>(
+      <div>
       <div className="card">
         <button className="delete">delete</button>
         <button className="update">update </button>
@@ -17,7 +35,7 @@ const AllRecepies = () => {
             />
           </div>
           <div className="text">
-            <h1 className="food">Pizza</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 25 Mins</i> <br />
             <i> Serves: 5 </i>
           </div>
@@ -37,7 +55,7 @@ const AllRecepies = () => {
            
           </div>
           <div className="text">
-            <h1 className="food">Pasta</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 30 Mins</i> <br />
             <i> Serves : 4 </i>
           </div>
@@ -56,7 +74,7 @@ const AllRecepies = () => {
             />
           </div>
           <div className="text">
-            <h1 className="food">Curry chicken</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 45 Mins</i> <br />
             <i>Serves : 4  </i>
           </div>
@@ -75,7 +93,7 @@ const AllRecepies = () => {
             />
           </div>
           <div className="text">
-            <h1 className="food">Stir-Fry</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 40 Mins</i> <br />
             <i>Serves : 3 </i>
           </div>
@@ -95,7 +113,7 @@ const AllRecepies = () => {
            
           </div>
           <div className="text">
-            <h1 className="food">Roasted Chicken</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 425 Mins</i> <br />
             <i>Serves : 6 </i>
           </div>
@@ -114,14 +132,16 @@ const AllRecepies = () => {
             />
           </div>
           <div className="text">
-            <h1 className="food">Beef Stir Fry</h1>
+            <h1 className="food">{item.recepie_Name}</h1>
             <i> 40 Mins</i> <br />
             <i>Serves : 2 </i>
           </div>
         </>
       </div>
-  
+      </div>
+  ))}
     </div>
+   
   );
 };
 

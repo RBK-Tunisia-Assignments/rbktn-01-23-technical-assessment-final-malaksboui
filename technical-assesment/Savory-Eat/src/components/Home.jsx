@@ -1,4 +1,5 @@
 import { React } from "react";
+import AllRecipies from "./AllRecipies.jsx";
 // import Allrecepies from "./allrecepies.jsx";
 
 const Home = ({ changeView }) => {
